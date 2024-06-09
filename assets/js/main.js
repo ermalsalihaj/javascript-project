@@ -36,3 +36,11 @@ const shadowHeader = () => {
     : header.classList.remove("shadow-header");
 };
 window.addEventListener("scroll", shadowHeader);
+
+/*=============== SWIPER FAVORITES ===============*/
+let swiperFavorites = new Swiper(".favorites__swiper", {
+  loop: true,
+  grabCursor: true,
+  slidesPerView: "auto",
+  centeredSlides: "auto",
+});
