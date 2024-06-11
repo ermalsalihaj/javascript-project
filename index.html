@@ -308,6 +308,17 @@
         </div>
       </section>
 
+      <!--=============== PIXI.JS SLIDER ===============-->
+      <section id="pixi-slider-container" class="pixi-slider">
+        <h2 class="section__title">
+          Our <br />
+          Flavors
+        </h2>
+        <button id="prevBtn">Previous</button>
+        <canvas id="pixi-slider-canvas"></canvas>
+        <button id="nextBtn">Next</button>
+      </section>
+
       <!--==================== PRODUCTS ====================-->
       <section class="products section" id="products">
         <h2 class="section__title">
@@ -563,6 +574,58 @@
             document.getElementById("team").offsetHeight
           );
         });
+      });
+
+      /*  -------------------------------------------------------------------  */
+      document.addEventListener("DOMContentLoaded", function () {
+        const app = new PIXI.Application({
+          view: document.getElementById("pixi-slider-canvas"),
+          width: document.getElementById("pixi-slider-container").offsetWidth,
+          height: document.getElementById("pixi-slider-container").offsetHeight,
+          transparent: true,
+        });
+
+        const sliderContainer = new PIXI.Container();
+        app.stage.addChild(sliderContainer);
+
+        const slides = [
+          "./assets/img/product-chips-1.png",
+          "./assets/img/product-chips-2.png",
+          "./assets/img/product-chips-3.png",
+        ];
+
+        let currentSlideIndex = 0;
+        let slideWidth = app.renderer.width; // Assuming each slide takes the full width of the canvas
+
+        // Create slides
+        for (let i = 0; i < slides.length; i++) {
+          const slide = PIXI.Sprite.from(slides[i]);
+          slide.position.set(i * slideWidth, 0);
+          sliderContainer.addChild(slide);
+        }
+
+        // Function to move the slider
+        function moveSlider(index) {
+          const newX = -index * slideWidth;
+          sliderContainer.position.x = newX;
+        }
+
+        // Function to handle next slide
+        function nextSlide() {
+          currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+          moveSlider(currentSlideIndex);
+        }
+
+        // Function to handle previous slide
+        function prevSlide() {
+          currentSlideIndex =
+            (currentSlideIndex - 1 + slides.length) % slides.length;
+          moveSlider(currentSlideIndex);
+        }
+
+        // Button event listeners
+        document.getElementById("prevBtn").addEventListener("click", prevSlide);
+        document.getElementById("nextBtn").addEventListener("click", nextSlide);
       });
     </script>
   </body>

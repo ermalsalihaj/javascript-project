@@ -177,6 +177,12 @@ img {
     justify-content: space-between;
     transition: left 0.4s;
   }
+  .video {
+    display: none;
+  }
+  .pixi-slider {
+    display: none;
+  }
 }
 
 .nav__list,
@@ -588,6 +594,7 @@ img {
   bottom: 3rem;
   rotate: 15deg;
 }
+/*=============== PIXI SLIDER ===========*/
 
 /*=============== CONTACT ===============*/
 .contact__container {
@@ -738,6 +745,12 @@ img {
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 340px) {
+  .video {
+    display: none;
+  }
+  .pixi-slider {
+    display: none;
+  }
   .container {
     margin-inline: 1rem;
   }
@@ -957,6 +970,35 @@ img {
   }
   .banner__item span {
     font-size: var(--h1-font-size);
+  }
+
+  /* Styles for buttons */
+  #prevBtn,
+  #nextBtn {
+    background-color: var(--first-color);
+    color: var(--white-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-semi-bold);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 620px;
+  }
+
+  #prevBtn:hover,
+  #nextBtn:hover {
+    background-color: var(--second-color-dark);
+  }
+
+  /* Styles for canvas */
+  #pixi-slider-canvas {
+    display: block;
+    margin-left: 540px;
+    margin-top: 30px;
+    height: 370px;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-img);
   }
 
   .products__container {
