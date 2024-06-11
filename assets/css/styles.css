@@ -67,6 +67,7 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--first-color);
   color: var(--white-color);
+  cursor: none;
 }
 
 ul {
@@ -107,6 +108,26 @@ img {
 
 .main {
   overflow: hidden;
+}
+
+#team {
+  position: relative;
+  overflow: hidden;
+}
+
+#pixi-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.team-content {
+  position: relative;
+  z-index: 1;
 }
 
 /*=============== HEADER & NAV ===============*/

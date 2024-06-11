@@ -23,6 +23,7 @@
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css" />
 
+    <script src="./assets/js/pixi.min.js" defer></script>
     <title>CHIPS</title>
   </head>
   <body>
@@ -93,7 +94,8 @@
     </header>
 
     <!--==================== MAIN ====================-->
-    <main class="main">
+    <main id="team" class="main">
+      <canvas id="pixi-canvas"></canvas>
       <!--==================== HOME ====================-->
       <section class="home section" id="home">
         <div class="home__container container grid">
@@ -505,7 +507,7 @@
           <a href="#" class="footer__link">Privacy Policy</a>
 
           <span class="footer__copy">
-            &#169; All Rights Reserved By Bedimcode
+            &#169; All Rights Reserved By ermalsalihaj
           </span>
         </div>
       </div>
@@ -524,5 +526,44 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
+
+    <!--=============== PIXI.JS SCRIPT ===============-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const app = new PIXI.Application({
+          view: document.getElementById("pixi-canvas"),
+          width: document.getElementById("team").offsetWidth,
+          height: document.getElementById("team").offsetHeight,
+          transparent: true,
+        });
+
+        // Load the texture and create the sprite
+        const chipTexture = PIXI.Texture.from("./assets/img/chips-1.png");
+        const chip = new PIXI.Sprite(chipTexture);
+        chip.anchor.set(0.5);
+        chip.scale.set(0.1);
+        app.stage.addChild(chip);
+
+        // Follow the mouse cursor
+        document
+          .getElementById("team")
+          .addEventListener("mousemove", function (event) {
+            const rect = document
+              .getElementById("team")
+              .getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+            chip.position.set(mouseX, mouseY);
+          });
+
+        // Resize the renderer on window resize
+        window.addEventListener("resize", function () {
+          app.renderer.resize(
+            document.getElementById("team").offsetWidth,
+            document.getElementById("team").offsetHeight
+          );
+        });
+      });
+    </script>
   </body>
 </html>
